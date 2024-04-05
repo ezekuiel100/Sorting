@@ -21,18 +21,14 @@ Barras();
 function sorting(index) {
   setTimeout(() => {
     if (index < barra.length) {
-      let minIndex = index;
-
       for (let i = index + 1; i < barra.length; i++) {
-        if (barra[i] < barra[minIndex]) {
-          minIndex = i;
+        if (barra[i] < barra[index]) {
+          [barra[index], barra[i]] = [barra[i], barra[index]]; // Troca os elementos
+
+          Barras(index);
         }
       }
 
-      if (minIndex !== index) {
-        [barra[index], barra[minIndex]] = [barra[minIndex], barra[index]]; // Troca os elementos
-        Barras(index); // Atualiza a exibição após a troca
-      }
       sorting(index + 1);
     }
   }, 500);
